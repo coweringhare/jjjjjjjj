@@ -1,0 +1,522 @@
+:: StoryTitle
+amana
+
+
+:: StoryData
+{
+  "ifid": "E8C31B68-1A9B-4838-A250-3E7254E3A572",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "start",
+  "zoom": 1
+}
+
+
+:: CheckEnding {"position":"1025,1500","size":"100,100"}
+(if: $culture >= 2 and $culture >= $kexin and $culture >= $meixin)[(goto: "EndingCulture")]
+(else-if: $kexin > $meixin and $kexin >= 2)[(goto: "EndingKexin")]
+(else-if: $meixin > $kexin and $meixin >= 2)[(goto: "EndingMeixin")]
+(else:)[(goto: "EndingFriends")]
+
+
+:: EndingCulture {"position":"1325,175","size":"100,100"}
+(display: "TaskResult")
+(text-colour:green)[【小明和大家都不是好朋友】]
+對於美欣和可欣而言，小明就只是一個什麼一想法都沒有的人。
+你確實有在嘗試解決問題，但是她們更需要你支持其中一方。
+因此她們覺得你不是個好相處的人，今天過後再沒有聯繫。
+(display: "ScoreSummary")
+
+
+:: EndingFriends {"position":"1200,175","size":"100,100"}
+(display: "TaskResult")
+(text-colour:green)[【大家都是好朋友】]
+你們大家都是好朋友，相處得非常好，不過也沒有辦法關係更好。
+美心和可欣都覺得你人不錯，不過也就這樣了。
+(display: "ScoreSummary")
+
+
+:: EndingKexin {"position":"1000,175","size":"100,100"}
+(display: "TaskResult")
+(text-colour:green)[【可欣好感線結局】]
+龍介、可欣和美心一起走回捷運站。  
+路上，美心接到朋友的訊息，先去找朋友了。
+
+只剩下龍介和可欣一起走著。  
+可欣看著手上的禮物和娃娃，小聲說：「今天謝謝你。」
+
+龍介也說：「我也很開心。因為有你在，我比較不怕人多。」
+
+兩個人都沒有說得很清楚，  
+但都知道——今晚之後，他們的關係，比以前更近了一點。
+(display: "ScoreSummary")
+
+
+:: EndingMeixin {"position":"1100,175","size":"100,100"}
+(display: "TaskResult")
+(text-colour:green)[【美心好感線結局】]
+美心覺得跟你相處很開心，但是由於美心很在意可欣，因此直到最後你們三人都是好朋友。
+(display: "ScoreSummary")
+
+
+:: FoodBubbleTea {"position":"1175,800","size":"100,100"}
+(set: $culture to $culture + 1)
+(set: $kexin to $kexin + 1)
+(set: $meixin to $meixin - 1)
+
+其實我覺得兩個想法都很好，以後也都還有機會出去玩，要不然這次猜拳決定怎麼樣?
+
+
+[[兩人沒說甚麼，但好像有點不開心'。->MidChoice]]
+
+
+:: FoodChicken {"position":"1050,800","size":"100,100"}
+(set: $kexin to $kexin + 1)
+
+我覺得美心的想法很不錯，我也比較喜歡熱鬧的地方，不過這是我來台灣第一次跟朋友出去玩，還是比較想去平常不會去的地方玩。
+
+[[美心聽完也沒說甚麼，但也沒有反對。->MidChoice]]
+
+
+:: FoodStinkyTofu {"position":"925,800","size":"100,100"}
+(set: $culture to $culture + 1)
+(set: $meixin to $meixin + 1)
+
+我覺得可欣的想法很不錯，我也比較喜歡人少的地方，不過這是我來台灣第一次跟朋友出去玩，還是比較想去熱鬧一點的地方玩。
+
+[[可欣聽完也沒說甚麼，但也沒有反對。->MidChoice]]
+
+
+:: GameChoice {"position":"1050,1200","size":"100,100"}
+在結束了今天一天的行程後，你即將和美心及可欣說再見。
+
+今天一整天你過得很開心，此時你看著她們慢慢離開心中卻感到可惜。  
+感覺心裡有些話想說。
+
+小明拿出手機，猶豫著該不該說。
+
+他決定——
+
+* [[打給美心。->GameGiftKexin]]
+* [[打給可欣。->GameGiftMeixin]]
+* [[同時傳訊息給她們。->GameGiftBoth]]
+* [[把手機收回去。->GameGiftSelf]]
+
+
+:: GameGiftBoth {"position":"1112.5,1325","size":"100,100"}
+(set: $kexin to $kexin + 1)
+
+大家都很開心，不過結果就是沒有人特別開心，一天就這樣輕鬆得結束了。
+
+[[看看今晚的結果->CheckEnding]]
+
+
+:: GameGiftKexin {"position":"862.5,1325","size":"100,100"}
+(set: $kexin to $kexin + 1)
+(set: $meixin to $meixin + 1)
+
+對小明來說，美心是個很有趣的人。
+經過今天一天的相處，小明感覺自己需要和美心說。
+不曾想美心居然也和小明有相同的感覺，他們有很多共同點。
+此時他們感覺距離又拉近了些。
+[[看看今晚的結果->CheckEnding]]
+
+
+:: GameGiftMeixin {"position":"987.5,1325","size":"100,100"}
+(set: $meixin to $meixin + 1)
+
+對可欣而言或許小明比起其他人更能了解她，畢竟大家平常也不怎麼願意她講話。
+但對小明而言，見識過活潑的可欣後，現在又變回內向的樣子，讓他感覺很特別。
+好像有個只有他們兩人知道的秘密存在。
+小明希望能有更多機會跟可欣相處。
+
+[[看看今晚的結果->CheckEnding]]
+
+
+:: GameGiftSelf {"position":"1237.5,1325","size":"100,100"}
+(set: $culture to $culture + 1)
+
+對小明來說，心中雖然有些話想對她們兩人說，不過一切好像有點太早了。
+他們認識的時間不到一個禮拜，突然說些沉重的話是不是以後連朋友都當不成了呢?
+小明覺得能不能繼續當朋友實在太重要了，因此也沒有勇氣去承受一點風險。
+一天就這樣結束了。
+
+[[看看今晚的結果->CheckEnding]]
+
+
+:: Meet {"position":"1050,675","size":"100,100"}
+大家的意見都不一樣，沒辦法決定到底聽誰的比較好。
+
+小明本身覺得只要能出去玩都很開心，不管是去哪裡都一樣。
+不過大家一直決定不了要聽誰的，讓情況越來越糟糕。
+
+小明雖然不知道該怎麼辦但還是得做些什麼。  
+小明可是好不容易才交到這兩個朋友的，不能就這樣變回沒朋友的可憐人。 
+
+
+在美心和可欣開始吵起來的時候，小明不再安靜。  
+
+小明一臉認真的看著美心和可欣，他說
+
+* [[說服美心。->FoodStinkyTofu]]
+* [[說服可欣。->FoodChicken]]
+* [[選擇比較不會吵架的方法->FoodBubbleTea]]
+
+
+:: MidAskCulture {"position":"1175,1075","size":"100,100"}
+(set: $kexin to $kexin + 1)
+(set: $meixin to $meixin - 1)
+
+小明:「我覺得大家講得都很有道理，哈哈。」
+不知道為甚麼美心和可欣看起來都有點不開心了。
+
+[[時間來到隔天傍晚。->GameChoice]]
+
+
+:: MidChoice {"position":"1050,950","size":"100,100"}
+在小明說完他的想法後，美心和可欣也冷靜下來，三人接著討論出去玩要準備些什麼。
+美心:「出去玩的行程規劃也是很重要的，如果要安排好去的時間和回來的時間，感覺要先做不少功課。」
+可欣:「不過我們這次去玩的時間會比較長，所以能夠不會讓我們中暑之類的東西也是很重要的吧。」
+對於這兩人說的話你感到很有道理，你雖然也想提出什麼想法表示你也有在思考，可惜沒辦法，你確實沒有在思考。
+因此，你必須做些甚麼來讓她們覺得你不是甚麼事都沒在想的人。
+
+* [[和美心一起進行行程規劃。->MidHelpKexin]]
+* [[和可欣一起去採買必需品。->MidHelpMeixin]]
+* [[裝作有在聽的樣子敷衍幾句。->MidAskCulture]]
+
+
+:: MidHelpKexin {"position":"925,1075","size":"100,100"}
+(set: $meixin to $meixin + 1)
+(set: $kexin to $kexin - 1)
+
+放學後小明來到美心的家裡，用她的電腦查了很多資料，忙了好一陣子後終於整理出當天的行程表，而美心此時也意識到自己在學校和可欣的不對，向小明道歉。
+小明笑著原諒她，目光掃到櫃子上的相片，小明才發現原來美心的興趣有不少和自己一樣，因此小名和美欣又開心地聊了好一陣子才回家。
+[[時間來到隔天傍晚。->GameChoice]]
+
+
+:: MidHelpMeixin {"position":"1050,1075","size":"100,100"}
+(set: $culture to $culture + 1)
+
+小明和可欣在賣場挑選他們需要的東西，也去看一些之後大家一起爬山會用到的東西。
+平時內向的可欣在聊到和爬山有關的話題，就變得特別開心，對小明解釋各種知識，也一直分享自己爬山的經驗，小明雖然沒怎麼爬過山，不過看著現在的可欣他覺得爬山說不定也蠻有趣的。
+
+[[時間來到隔天傍晚。->GameChoice]]
+
+
+:: ScoreSummary {"position":"875,275","size":"100,100"}
+**今晚的分數總結：**
+
+**朋友分：** (print: $culture)  
+(if: $culture >= 2)[你很認真想融入她們。  
+你有嘗試解決問題，很棒。]\
+(else-if: $culture is 1)[你有做一點努力，  
+但明顯不夠。]\
+(else:)[你沒有特別在意她們，  
+主要是只在乎你自己。]
+
+**可欣好感：** (print: $kexin)  
+(if: $kexin >= 2)[可欣覺得你很貼心，也很可靠，  
+她對你有很好印象。]\
+(else-if: $kexin is 1)[可欣覺得你人不錯，  
+可以當朋友聊天。]\
+(else:)[她覺得你還可以，  
+不過跟以前的感覺差不多。]
+
+**美心好感：** (print: $meixin)  
+(if: $meixin >= 2)[美心覺得你很好玩、很好聊，  
+跟你在一起很輕鬆。]\
+(else-if: $meixin is 1)[美心覺得你不錯，  
+可以當一起出去玩的朋友。]\
+(else:)[她今天比較像是一起出來玩，  
+對你沒有太多特別的感覺。]
+
+---
+
+如果你想看看別的可能，  
+可以[[重新開始這個循環->Start]]。
+
+
+:: Start {"position":"1050,425","size":"100,100"}
+(set: $culture to 0)(set: $kexin to 0)(set: $meixin to 0)(set: $goal to "")  <!-- 新增：記錄玩家一開始選的目標 -->
+目前小明剛剛轉來這個班上，個性害羞的小明目前沒有認識多少新朋友，
+目前只有可欣跟美心這兩位朋友而已。
+這個周末美心和可欣想要約小明一起出去玩，順便認識台灣的景點。
+* [[聽聽美心的想法。->StartGoalCulture]]
+* [[聽聽可欣的想法。->StartGoalKexin]]
+* [[說說自己的想法。->StartGoalMeixin]]
+
+
+:: StartGoalCulture {"position":"925,550","size":"100,100"}
+(set: $goal to "culture")       <!-- 新增 -->
+(set: $culture to $culture + 1)
+
+美心：「既然來台灣，就要好好學一學台灣文化。」  
+於是美心決定和大家一起去逛夜市。
+
+[[小明的想法->Meet]]
+
+
+:: StartGoalKexin {"position":"1050,550","size":"100,100"}
+(set: $goal to "kexin")         <!-- 新增 -->
+(set: $kexin to $kexin + 1)
+
+可欣比較內向不喜歡人多的地方，最後給出的回覆是大家一起去爬山。
+[[小明的想法->Meet]]
+
+
+:: StartGoalMeixin {"position":"1175,550","size":"100,100"}
+(set: $goal to "meixin")        <!-- 新增 -->
+(set: $meixin to $meixin + 1)
+
+小明覺得台灣好玩的地方有很多，但是對他來說還是大家一起玩比較開心，所以小明提議大家一起去游泳。
+
+[[小明的想法->Meet]]
+
+
+:: TaskResult {"position":"875,175","size":"100,100"}
+(text-colour:orange)[**任務結果：**]
+
+(if: $goal is "culture")[
+你一開始的目標是：**(text-colour:magenta)[和朋友關係更好]**。\
+(if: $culture > $kexin and $culture > $meixin)[最後文化分是三個裡面最高，**(text-colour:magenta)[任務成功*]*。]\
+(else:)[最後朋友分不是最高，**(text-colour:red)[任務失敗]**。]
+]
+
+(if: $goal is "kexin")[
+你一開始的目標是：**(text-colour:magenta)[多跟可欣說話]**。\
+(if: $kexin > $culture and $kexin > $meixin)[最後可欣好感最高，**(text-colour:magenta)[任務成功]**。]\
+(else:)[最後可欣好感不是最高，**(text-colour:red)[任務失敗]**。]
+]
+
+
+
+:: UI-Nav {"position":"275,450","size":"100,100"}
+<div class="navbar">(link: "課程目標")[(goto:"課程目標")] • (link: "閃卡")[(goto:"閃卡")] • (link:"字謎搜尋")[(goto:"字謎搜尋")]• (link:"聽音選字")[(goto:"聽音選字")]  • (link:"說生詞")[(goto:"說生詞") ] • (link:"記憶翻牌遊戲")[(goto:"記憶翻牌遊戲")] • (link:"填字遊戲")[(goto:"填字遊戲")] •
+
+
+
+:: start {"position":"650,300","size":"100,100"}
+歡迎來到實力至上主義的教室，讓我們一起來學習今天的主題"你害怕考試嗎"
+進入[[課程目標]]
+[[Start]]
+(LINk:"這裡")[(goto:"課程目標")]
+本教材節選並改編自
+
+
+:: 填字遊戲 {"position":"625,800","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://coweringhare.github.io/g/" 
+  width="100%" 
+  height="800" 
+  style="border:1px solid #ccc;">
+</iframe>
+
+
+:: 字謎搜尋 {"position":"625,600","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src=" https://coweringhare.github.io/b/" 
+  width="100%" 
+  height="800" 
+  style="border:1px solid #ccc;">
+</iframe>
+
+
+:: 生詞頁 {"position":"275,350","size":"100,100"}
+''生詞瀏覽''
+<div class="grid2">
+(for: each _it, ...$vocab_all)[
+  <div class="card">{(if: _it contains 'img')[
+      <img class="vocab-img" src="(print: _it's 'img')" alt="(print: _it's 'hanzi')">
+    ]}<h3>
+      <span class='hanzi-xl'>(print: _it's 'hanzi')</span>
+      (print: "<span class='hint hint-xl' data-hint='" + (_it's 'pinyin') + "'>ⓘ</span>")
+    </h3>
+    詞性：''(print: _it's 'tag')''<br>
+    意思：''(print: _it's 'def')''<br>
+    
+      ]
+      (LINk:"這裡")[(goto:"UI-Nav")]
+
+
+:: 聽音選字 {"position":"500,700","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://coweringhare.github.io/d/" 
+  width="100%" 
+  height="800" 
+  style="border:1px solid #ccc;">
+</iframe>
+
+
+:: 記憶翻牌遊戲 {"position":"500,800","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://coweringhare.github.io/e/" 
+  width="100%" 
+  height="800" 
+  style="border:1px solid #ccc;">
+</iframe>
+
+
+:: 說生詞 {"position":"625,700","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://coweringhare.github.io/e/" 
+  width="100%" 
+  height="800" 
+  style="border:1px solid #ccc;">
+</iframe>
+
+
+:: 課程目標 {"position":"650,475","size":"100,100"}
+{
+(set: $lessonID to "你害怕考試嗎?")
+(set: $vocab_all to (array:
+(datamap:"hanzi","翻","pinyin","","def","to flip; to turn over","tag","V"),
+(datamap:"hanzi","頁","pinyin","","def","page","tag","N"),
+(datamap:"hanzi","三明治","pinyin","","def","sandwich","tag","N"),
+(datamap:"hanzi","門","pinyin","","def","classifier for subjects/courses","tag","M"),
+(datamap:"hanzi","課堂","pinyin","","def","classroom instruction; class session","tag","N"),
+(datamap:"hanzi","期末","pinyin","","def","end of term; final","tag","N"),
+(datamap:"hanzi","口試","pinyin","","def","oral exam","tag","N"),
+(datamap:"hanzi","篇","pinyin","","def","measure word for articles/essays","tag","M"),
+(datamap:"hanzi","作文","pinyin","","def","composition; essay","tag","N"),
+(datamap:"hanzi","用功","pinyin","","def","hardworking; diligent (in studying)","tag","Adj"),
+(datamap:"hanzi","當","pinyin","","def","to be (as a job/role)","tag","V"),
+(datamap:"hanzi","修","pinyin","","def","to take (a course)","tag","V"),
+(datamap:"hanzi","教授","pinyin","","def","professor","tag","N"),
+(datamap:"hanzi","知識","pinyin","","def","knowledge","tag","N"),
+(datamap:"hanzi","豐富","pinyin","","def","rich; abundant","tag","Adj"),
+(datamap:"hanzi","教法","pinyin","","def","teaching method","tag","N"),
+(datamap:"hanzi","系","pinyin","","def","department (in a school)","tag","N"),
+(datamap:"hanzi","文法","pinyin","","def","grammar","tag","N"),
+(datamap:"hanzi","筆試","pinyin","","def","written exam","tag","N"),
+(datamap:"hanzi","交","pinyin","","def","to hand in; to submit","tag","V"),
+(datamap:"hanzi","報告","pinyin","","def","report; presentation","tag","N"),
+(datamap:"hanzi","認真","pinyin","","def","serious; earnest","tag","Adj"),
+(datamap:"hanzi","字典","pinyin","","def","dictionary","tag","N"),
+(datamap:"hanzi","翻","pinyin","","def","to look up (in a dictionary/book)","tag","V"),
+(datamap:"hanzi","題","pinyin","","def","question (on a test/exam)","tag","N"),
+(datamap:"hanzi","努力","pinyin","","def","to work hard","tag","V"),
+(datamap:"hanzi","能力","pinyin","","def","ability","tag","N"),
+(datamap:"hanzi","將來","pinyin","","def","in the future","tag","Adv"),
+(datamap:"hanzi","夠","pinyin","","def","enough","tag","Adj/Adv"),
+(datamap:"hanzi","加油","pinyin","","def","to encourage; to cheer up","tag","V"),
+(datamap:"hanzi","義大利","pinyin","","def","Italy","tag","N"),
+(datamap:"hanzi","期末考","pinyin","","def","final exam","tag","N")
+))
+
+(set: $textParas to (array:
+"建置中"
+))
+(set: $progress to (datamap:"vocab",0,"pattern",0,"text",0,"practice",0))
+(set: $score to (datamap:"vocab",0,"pattern",0,"text",0,"practice",0))
+(set: $seenVocab to (dataset:))
+(set: $wrongBank to (dataset:))
+(set: $notes to "")
+
+}
+[(text-color:green)[今天我們要學什麼]]
+(LINk:"這裡")[(goto:"生詞頁")]
+1.在你的國家考試分數重要嗎?
+2.天要念多少書才能考個好成績
+3.學校的成績好壞會影響到你未來求職嗎?
+
+
+:: 閃卡 {"position":"500,600","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://coweringhare.github.io/-/" 
+  width="100%" 
+  height="800" 
+  style="border:1px solid #ccc;">
+</iframe>
+
+
+:: StoryStylesheet [stylesheet]
+/* --- 生詞卡片樣式 --- */
+.card {
+  border: 1px solid #ccc;
+  padding: 0.5em 1em 1em 1em;
+  margin-bottom: 1em; /* 在 Flexbox 中，這個屬性依然有效 */
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 1.4;
+  /* (新增) 為了讓 Flexbox 寬度計算更精準 */
+  box-sizing: border-box; 
+}
+
+/* --- 控制大漢字的大小 --- */
+.hanzi-xl {
+  font-size: 1.8rem;
+  line-height: 1;
+  font-weight: 600;
+}
+
+/* --- 移除卡片中標題的預設上方邊距 --- */
+.card h3 {
+  margin-top: 0;
+}
+
+/* --- (已刪除 .grammar-card，為求最簡化) --- */
+
+/* --- 拼音提示 (Tooltip) 樣式 --- */
+.hint {
+  position: relative;
+  cursor: help;
+}
+
+.hint::after {
+  content: attr(data-hint);
+  position: absolute;
+  top: 1.5em;
+  left: -120%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 20px;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+/* 滑鼠滑過 ⓘ 時，顯示提示框 */
+.hint:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* --- 【修改】使用 Flexbox 的雙欄佈局 --- */
+.grid2 {
+  display: flex;
+  flex-wrap: wrap; /* 允許項目換行 */
+  gap: 1.5em;      /* 設定間距 */
+}
+/* 為 .grid2 中的卡片設定寬度 */
+.grid2 .card {
+  /* 每個卡片佔據 50% 寬度，再減去一半的間距，達成雙欄效果 */
+  flex-basis: calc(50% - 0.75em);
+  flex-grow: 1;
+}
+
+/* --- 單欄網格佈局 --- */
+.grid1 {
+  display: block; /* 使用簡單的區塊佈局即可 */
+}
+.grid1 .card {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
